@@ -21,22 +21,6 @@ export const handler: Handlers<any, State> = {
 
     return ctx.render();
   },
-  async POST(req, ctx) {
-    const form = await req.formData();
-    const email = form.get("email") as string;
-    const password = form.get("password") as string;
-
-    const { error } = await ctx.state.supabaseClient
-      .auth.signInWithPassword({ email, password });
-
-    let redirectUrl = new URL(req.url).searchParams.get("redirect_url") ??
-      "/";
-    if (error) {
-      redirectUrl = `/login?error=${encodeURIComponent(error.message)}`;
-    }
-
-    return redirect(redirectUrl);
-  },
 };
 
 /**

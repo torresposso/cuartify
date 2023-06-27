@@ -5,26 +5,38 @@
 import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/_middleware.ts";
 import * as $2 from "./routes/api/joke.ts";
-import * as $3 from "./routes/auth/login/index.tsx";
-import * as $4 from "./routes/auth/login/oauth.ts";
-import * as $5 from "./routes/auth/login/success.tsx";
-import * as $6 from "./routes/index.tsx";
+import * as $3 from "./routes/api/upload.ts";
+import * as $4 from "./routes/auth/login/index.tsx";
+import * as $5 from "./routes/auth/login/oauth.ts";
+import * as $6 from "./routes/auth/login/success.tsx";
+import * as $7 from "./routes/cuartos/_middleware.ts";
+import * as $8 from "./routes/cuartos/index.tsx";
+import * as $9 from "./routes/index.tsx";
+import * as $10 from "./routes/logout.tsx";
 import * as $$0 from "./islands/AuthFragmentCatcher.tsx";
-import * as $$1 from "./islands/Counter.tsx";
+import * as $$1 from "./islands/ImageUploader.tsx";
+import * as $$2 from "./islands/Layout.tsx";
+import * as $$3 from "./islands/Navbar.tsx";
 
 const manifest = {
   routes: {
     "./routes/_app.tsx": $0,
     "./routes/_middleware.ts": $1,
     "./routes/api/joke.ts": $2,
-    "./routes/auth/login/index.tsx": $3,
-    "./routes/auth/login/oauth.ts": $4,
-    "./routes/auth/login/success.tsx": $5,
-    "./routes/index.tsx": $6,
+    "./routes/api/upload.ts": $3,
+    "./routes/auth/login/index.tsx": $4,
+    "./routes/auth/login/oauth.ts": $5,
+    "./routes/auth/login/success.tsx": $6,
+    "./routes/cuartos/_middleware.ts": $7,
+    "./routes/cuartos/index.tsx": $8,
+    "./routes/index.tsx": $9,
+    "./routes/logout.tsx": $10,
   },
   islands: {
     "./islands/AuthFragmentCatcher.tsx": $$0,
-    "./islands/Counter.tsx": $$1,
+    "./islands/ImageUploader.tsx": $$1,
+    "./islands/Layout.tsx": $$2,
+    "./islands/Navbar.tsx": $$3,
   },
   baseUrl: import.meta.url,
 };

@@ -24,6 +24,8 @@ export async function handler(
   const supabaseClient = createServerClient({ req, resHeaders: headers });
   const { data: { session } } = await supabaseClient.auth.getSession();
 
+  console.log("session", session);
+
   ctx.state.session = session;
   ctx.state.supabaseClient = supabaseClient;
 
