@@ -15,16 +15,21 @@ export const handler: Handlers<any, State> = {
     }
 
     const { origin } = new URL(req.url);
+
+    console.log("url", origin);
+
     const { data, error } = await ctx.state.supabaseClient.auth.signInWithOAuth(
       {
         provider: provider as Provider,
         options: {
-          redirectTo: origin + "/auth/login/success",
+          redirectTo: `${origin}/auth/login/success`,
         },
       },
     );
 
     if (error) throw error;
+
+    console.log("data", data.url);
 
     return redirect(data.url);
   },

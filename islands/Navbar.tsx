@@ -14,8 +14,8 @@ const Navbar: FunctionComponent<NavbarProps> = ({ user }) => {
 
   return (
     <>
-      <header className="flex flex-row justify-between items-center w-full  border-b py-7  px-2 border-gray-500 gap-2">
-        <a href="/" className="flex space-x-2">
+      <header className="flex flex-row justify-between items-center w-full  border-b p-4 border-gray-500 gap-2">
+        <a href="/" className="flex space-x-2  items-center">
           <svg
             version="1.1"
             id="Layer_1"
@@ -29,7 +29,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({ user }) => {
             </g>
           </svg>
           <h1 className="sm:text-3xl text-xl font-bold ml-2 tracking-tight text-gray-300">
-            roomGPT.io
+            CuarterifAI
           </h1>
         </a>
         {user

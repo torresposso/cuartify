@@ -11,7 +11,9 @@ interface UploaderProps {
 // Don’t forget to keep the Uppy instance outside of your component.
 
 function ImageUploader() {
-  const progress = useSignal(0);
+  const uploadProgress = useSignal(0);
+  const downloadProgress = useSignal(0);
+
   const selectedImage = useSignal(new File([], ""));
   const isLoading = useSignal(false);
   const res = useSignal({});
@@ -43,10 +45,16 @@ function ImageUploader() {
           "Content-Type": "multipart/form-data",
         },
         onUploadProgress: (progressEvent) => {
-          progress.value = Math.round(
+          uploadProgress.value = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total!,
           );
-          console.log("progress", progress.value);
+          console.log("progress", downloadProgress.value);
+        },
+        onDownloadProgress(progressEvent) {
+          downloadProgress.value = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total!,
+          );
+          console.log("progress", downloadProgress.value);
         },
       });
       console.log("response", uploadResponse);
@@ -73,7 +81,8 @@ function ImageUploader() {
         <button type="submmit">Upload</button>
       </form>
       <div>
-        <pre>{progress.value}</pre>
+        <pre>Upload Progress: {uploadProgress.value}</pre>
+        <pre>Download Progress: {downloadProgress.value}</pre>
       </div>
     </>
   );

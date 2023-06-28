@@ -34,7 +34,7 @@ export default function AppLayout({ Component }: AppProps) {
           href="https://unpkg.com/open-props/gradients.min.css"
         />
       </Head>
-      <body class="[background-image:var(--gradient-8)] h-screen">
+      <body class="[background-image:var(--gradient-8)]">
         <Component />
       </body>
     </>

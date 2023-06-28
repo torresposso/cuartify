@@ -2,15 +2,13 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Layout from "@/islands/Layout.tsx";
 import { State } from "@/routes/_middleware.ts";
-import ImageUploader from "../../islands/ImageUploader.tsx";
+import ImageUploader from "@/islands/ImageUploader.tsx";
+import ImageGallery from "@/islands/ImageGallery.tsx";
 
 export const handler: Handlers<any, State> = {
   GET(_req, ctx) {
     const { supabaseClient, session } = ctx.state;
     const userId = session?.user.id;
-
-    console.log("user", session);
-
     const user = {
       id: session?.user.id,
       avatar_url: session?.user.user_metadata.avatar_url || "",
@@ -24,11 +22,12 @@ export const handler: Handlers<any, State> = {
 export default function Me({ data }: PageProps) {
   return (
     <Layout user={data.user}>
-      <main class="text-white py-12">
+      <main class="text-white p-8">
         <div>
           hello {data.user.name}
         </div>
         <ImageUploader />
+        <ImageGallery />
       </main>
     </Layout>
   );

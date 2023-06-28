@@ -14,9 +14,11 @@ import * as $8 from "./routes/cuartos/index.tsx";
 import * as $9 from "./routes/index.tsx";
 import * as $10 from "./routes/logout.tsx";
 import * as $$0 from "./islands/AuthFragmentCatcher.tsx";
-import * as $$1 from "./islands/ImageUploader.tsx";
-import * as $$2 from "./islands/Layout.tsx";
-import * as $$3 from "./islands/Navbar.tsx";
+import * as $$1 from "./islands/Counter.tsx";
+import * as $$2 from "./islands/ImageGallery.tsx";
+import * as $$3 from "./islands/ImageUploader.tsx";
+import * as $$4 from "./islands/Layout.tsx";
+import * as $$5 from "./islands/Navbar.tsx";
 
 const manifest = {
   routes: {
@@ -34,9 +36,11 @@ const manifest = {
   },
   islands: {
     "./islands/AuthFragmentCatcher.tsx": $$0,
-    "./islands/ImageUploader.tsx": $$1,
-    "./islands/Layout.tsx": $$2,
-    "./islands/Navbar.tsx": $$3,
+    "./islands/Counter.tsx": $$1,
+    "./islands/ImageGallery.tsx": $$2,
+    "./islands/ImageUploader.tsx": $$3,
+    "./islands/Layout.tsx": $$4,
+    "./islands/Navbar.tsx": $$5,
   },
   baseUrl: import.meta.url,
 };
