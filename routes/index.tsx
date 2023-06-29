@@ -7,9 +7,6 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 export const handler: Handlers<unknown, State> = {
   GET(_req, ctx) {
     const { supabaseClient, session } = ctx.state;
-    const userId = session?.user.id;
-
-    console.log("user", session);
 
     let user;
 

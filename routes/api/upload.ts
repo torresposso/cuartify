@@ -1,31 +1,41 @@
 // Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Handlers } from "$fresh/server.ts";
-export const handler: Handlers = {
-  async POST(req) {
+import { State } from "@/routes/_middleware.ts";
+export const handler: Handlers<unknown, State> = {
+  async POST(req, ctx) {
     try {
       const form = await req.formData();
 
-      const image = form.get("image") as Blob;
+      const image = form.get("image") as File;
 
-      console.log("image", image);
+      const imageExtension = image.name.split(".").pop();
 
-      // const response = await (await fetch(
-      //   "https://api-inference.huggingface.co/models/facebook/wav2vec2-large-xlsr-53-spanish",
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${ensureGetEnv("HF_ACCESS_TOKEN")}`,
-      //     },
-      //     method: "POST",
-      //     body: audioBlob,
-      //   },
-      // )).json();
-      // console.log("speech", response);
+      const { session, supabaseClient } = ctx.state;
 
-      return Response.json("ok");
+      if (!session) throw new Error("not authenticated");
+
+      const userId = session.user.id;
+
+      const PATH = `${userId}/${crypto.randomUUID()}`;
+      const ORIGINAL_FILENAME = `original.${imageExtension}`;
+      const uploadedImage = await supabaseClient
+        .storage
+        .from("rooms_images")
+        .upload(`${PATH}/${ORIGINAL_FILENAME}`, image, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+
+      const imageList = await supabaseClient.storage.from("rooms_images")
+        .list(PATH);
+
+      console.log("imageList", imageList);
+
+      return Response.json(uploadedImage.data!);
 
       // Proxy the streamed SSE response from OpenAI
     } catch (error) {
-      console.log(error);
+      return Response.json(error);
     }
   },
 };

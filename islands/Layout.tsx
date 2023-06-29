@@ -9,7 +9,6 @@ type LayoutProps = {
   };
 };
 const Layout: FunctionComponent<LayoutProps> = ({ children, user }) => {
-  console.log("user lay", user);
   return (
     <>
       <div class="flex max-w-6xl mx-auto flex-col py-2 min-h-screen">

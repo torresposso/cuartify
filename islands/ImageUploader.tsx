@@ -3,6 +3,7 @@ import { JSX } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { Signal } from "@preact/signals";
 import { useSignal } from "@preact/signals";
+import ImageGallery from "./ImageGallery.tsx";
 
 interface UploaderProps {
   progress: Signal<number>;
@@ -16,7 +17,7 @@ function ImageUploader() {
 
   const selectedImage = useSignal(new File([], ""));
   const isLoading = useSignal(false);
-  const res = useSignal({});
+  const responseImages = useSignal<string[]>([]);
 
   const handleImageChange = (e: JSX.TargetedEvent) => {
     const file = (e.target as HTMLInputElement)?.files![0];
@@ -59,7 +60,7 @@ function ImageUploader() {
       });
       console.log("response", uploadResponse);
 
-      res.value = uploadResponse;
+      //responseImages.value = uploadResponse;
 
       isLoading.value = false;
     } catch (error) {
@@ -69,20 +70,26 @@ function ImageUploader() {
   };
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)} class="flex">
-        <div>
-          <input
-            type="file"
-            name="image"
-            accept="image/png, image/jpeg"
-            onChange={(e) => handleImageChange(e)}
-          />
-        </div>
-        <button type="submmit">Upload</button>
-      </form>
       <div>
-        <pre>Upload Progress: {uploadProgress.value}</pre>
-        <pre>Download Progress: {downloadProgress.value}</pre>
+        <form onSubmit={(e) => handleSubmit(e)} class="flex">
+          <div>
+            <input
+              type="file"
+              name="image"
+              accept="image/png, image/jpeg"
+              onChange={(e) => handleImageChange(e)}
+            />
+          </div>
+          <button type="submmit">Upload</button>
+        </form>
+        <div>
+          <img src={URL.createObjectURL(selectedImage.value)} alt="" />
+        </div>
+        <div>
+          <pre>Upload Progress: {uploadProgress.value}</pre>
+          <pre>Download Progress: {downloadProgress.value}</pre>
+        </div>
+        {responseImages.value && <ImageGallery images={responseImages.value} />}
       </div>
     </>
   );

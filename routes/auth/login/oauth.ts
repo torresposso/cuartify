@@ -16,8 +16,6 @@ export const handler: Handlers<any, State> = {
 
     const { origin } = new URL(req.url);
 
-    console.log("url", origin);
-
     const { data, error } = await ctx.state.supabaseClient.auth.signInWithOAuth(
       {
         provider: provider as Provider,
@@ -28,8 +26,6 @@ export const handler: Handlers<any, State> = {
     );
 
     if (error) throw error;
-
-    console.log("data", data.url);
 
     return redirect(data.url);
   },
