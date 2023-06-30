@@ -14,7 +14,7 @@ export default function AppLayout({ Component }: AppProps) {
     <>
       <Head>
         <meta charSet="UTF-8" />
-        <title>Tombot - AI Agent</title>
+        <title>Cuartify - Modifica tus cuartos con IA</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <script

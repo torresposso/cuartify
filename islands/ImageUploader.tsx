@@ -24,7 +24,7 @@ function ImageUploader() {
     selectedImage.value = file;
   };
 
-  const handleSubmit = async (e: JSX.TargetedEvent) => {
+  const handleSubmit = async (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
     e.preventDefault();
     if (!selectedImage) {
       alert("Please select an image file.");
@@ -33,14 +33,7 @@ function ImageUploader() {
     isLoading.value = true;
 
     try {
-      const formData = new FormData();
-      formData.append("image", selectedImage.value);
-
-      //   const uploadResponse = await fetch("/api/upload", {
-      //     method: "POST",
-      //     body: formData,
-      //   });
-
+      const formData = new FormData(e.target as HTMLFormElement);
       const uploadResponse = await axios.post("/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -60,7 +53,7 @@ function ImageUploader() {
       });
       console.log("response", uploadResponse);
 
-      //responseImages.value = uploadResponse;
+      responseImages.value = uploadResponse.data;
 
       isLoading.value = false;
     } catch (error) {
@@ -71,13 +64,20 @@ function ImageUploader() {
   return (
     <>
       <div>
-        <form onSubmit={(e) => handleSubmit(e)} class="flex">
+        <form onSubmit={(e) => handleSubmit(e)} class="flex flex-col">
           <div>
             <input
               type="file"
               name="image"
               accept="image/png, image/jpeg"
               onChange={(e) => handleImageChange(e)}
+            />
+          </div>
+          <div>
+            <input
+              className="text-gray-800"
+              type="text"
+              name="prompt"
             />
           </div>
           <button type="submmit">Upload</button>
