@@ -12,8 +12,9 @@ import * as $6 from "./routes/auth/login/oauth.ts";
 import * as $7 from "./routes/auth/login/success.ts";
 import * as $8 from "./routes/cuartos/_middleware.ts";
 import * as $9 from "./routes/cuartos/index.tsx";
-import * as $10 from "./routes/index.tsx";
-import * as $11 from "./routes/logout.tsx";
+import * as $10 from "./routes/cuartos/lists.tsx";
+import * as $11 from "./routes/index.tsx";
+import * as $12 from "./routes/logout.tsx";
 import * as $$0 from "./islands/AuthFragmentCatcher.tsx";
 import * as $$1 from "./islands/Counter.tsx";
 import * as $$2 from "./islands/ImageGallery.tsx";
@@ -33,8 +34,9 @@ const manifest = {
     "./routes/auth/login/success.ts": $7,
     "./routes/cuartos/_middleware.ts": $8,
     "./routes/cuartos/index.tsx": $9,
-    "./routes/index.tsx": $10,
-    "./routes/logout.tsx": $11,
+    "./routes/cuartos/lists.tsx": $10,
+    "./routes/index.tsx": $11,
+    "./routes/logout.tsx": $12,
   },
   islands: {
     "./islands/AuthFragmentCatcher.tsx": $$0,

@@ -19,24 +19,16 @@ export const handler: Handlers<any, State> = {
       .list(
         session?.user.id,
       );
-    const rooms = data?.map((file) => ({ roomId: file.name }));
 
-    console.log("rooms", rooms);
-
-    return ctx.render({ user, rooms });
+    return ctx.render({ user, list: data });
   },
 };
 
-export default function Me({ data }: PageProps) {
-  console.log("datapage", data);
+export default function id({ data }: PageProps) {
+  console.log("list", data.list);
   return (
     <Layout user={data.user}>
       <main class="text-white p-8">
-        <div>
-          hello {data.user.name}
-        </div>
-        <ImageUploader />
-        <ImageGallery userId={data.user.id} rooms={data.rooms} />
       </main>
     </Layout>
   );
