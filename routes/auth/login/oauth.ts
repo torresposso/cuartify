@@ -21,6 +21,7 @@ export const handler: Handlers<any, State> = {
         provider: provider as Provider,
         options: {
           redirectTo: `${origin}/auth/login/success`,
+          skipBrowserRedirect: true,
         },
       },
     );
