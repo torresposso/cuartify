@@ -13,8 +13,9 @@ export default function AuthFragmentCatcher(props: AuthFragmentCatcherProps) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log("session", session);
       if (session?.user) {
-        window.location.href = "/";
+        location.href = "/";
       }
     });
 
