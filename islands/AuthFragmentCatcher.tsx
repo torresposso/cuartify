@@ -16,7 +16,7 @@ export default function AuthFragmentCatcher(props: AuthFragmentCatcherProps) {
       console.log("session", session);
       console.log("suscription", subscription);
       if (session?.user) {
-        location.href = "/";
+        window.location.href = "/";
       }
     });
 
