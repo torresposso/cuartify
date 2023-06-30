@@ -7,6 +7,7 @@ import redirect from "@/lib/redirect.ts";
 // deno-lint-ignore no-explicit-any
 export const handler: Handlers<any, State> = {
   async POST(req, ctx) {
+    const { supabaseClient } = ctx.state;
     const form = await req.formData();
     const provider = form.get("provider");
 
@@ -16,18 +17,17 @@ export const handler: Handlers<any, State> = {
 
     const { origin } = new URL(req.url);
 
-    const { data, error } = await ctx.state.supabaseClient.auth.signInWithOAuth(
+    const { data, error } = await supabaseClient.auth.signInWithOAuth(
       {
         provider: provider as Provider,
         options: {
-          redirectTo: `${origin}/auth/login/success`,
-          skipBrowserRedirect: true,
+          redirectTo: origin + "/auth/login/success",
         },
       },
     );
 
     if (error) throw error;
-    console.log("data:url", data.url);
+
     return redirect(data.url);
   },
 };
