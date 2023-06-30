@@ -26,7 +26,7 @@ export const handler: Handlers<any, State> = {
     );
 
     if (error) throw error;
-
+    console.log("data:url", data.url);
     return redirect(data.url);
   },
 };
